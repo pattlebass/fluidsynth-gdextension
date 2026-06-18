@@ -5,9 +5,6 @@ func _ready() -> void:
 
 func test_plugin_functionality() -> void:
 	var stream := AudioStreamMidiSequencer.new()
-	#stream.midi_path = "res://Sony Ericsson MusicDJ.mid"
-	#stream.midi_path = "res://Sony Ericsson MusicDJ_fixed.mid"
-	#stream.midi_path = "res://samples/samples2/sample_0_16.mid"
 	stream.soundfont_path = "res://Sony Ericsson A100 DB2020 Synth 1.0.4(1).sf2"
 	stream.bpm = 80
 	

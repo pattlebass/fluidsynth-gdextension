@@ -1,11 +1,11 @@
 // Include your classes, that you want to expose to Godot
+#include "audio_stream_midi_file.hpp"
 #include "audio_stream_midi_sequencer.hpp"
 #include "audio_stream_playback_midi.hpp"
 #include <gdextension_interface.h>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
-
 
 #ifdef __ANDROID__
 #include <dlfcn.h>
@@ -26,6 +26,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level) {
 	// GDREGISTER_CLASS(ItemData)
 	GDREGISTER_CLASS(AudioStreamPlaybackMidi)
 	GDREGISTER_CLASS(AudioStreamMidiSequencer)
+	GDREGISTER_CLASS(AudioStreamMidiFile)
 	UtilityFunctions::print("classes registered");
 }
 

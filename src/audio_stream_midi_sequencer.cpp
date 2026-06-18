@@ -1,5 +1,6 @@
 #include "audio_stream_midi_sequencer.hpp"
 #include "audio_stream_playback_midi.hpp"
+#include "godot_cpp/classes/audio_stream_playback.hpp"
 #include "godot_cpp/classes/file_access.hpp"
 
 Ref<AudioStreamPlayback> AudioStreamMidiSequencer::_instantiate_playback() const {
