@@ -1,9 +1,9 @@
 #include "audio_stream_playback_midi.hpp"
-#include "MidiFile.h"
-#include "fluidsynth/midi.h"
-#include "godot_cpp/classes/audio_server.hpp"
-#include "godot_cpp/classes/project_settings.hpp"
-#include "memory_soundfont_loader.h"
+#include "memory_soundfont_loader.hpp"
+#include <MidiFile.h>
+#include <fluidsynth/midi.h>
+#include <godot_cpp/classes/audio_server.hpp>
+#include <godot_cpp/classes/project_settings.hpp>
 #include <sstream>
 
 using namespace godot;

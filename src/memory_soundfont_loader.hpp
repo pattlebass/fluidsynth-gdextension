@@ -1,6 +1,6 @@
 #pragma once
 
-#include "fluidsynth.h"
+#include <fluidsynth.h>
 #include <godot_cpp/variant/string.hpp>
 
 namespace fluidsynthgd {

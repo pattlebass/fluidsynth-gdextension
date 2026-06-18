@@ -14,5 +14,5 @@ public:
 	void set_path(const String &path);
 
 private:
-	String path;
+	String path = "";
 };

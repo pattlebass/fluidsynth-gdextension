@@ -1,5 +1,5 @@
 #pragma once
-#include "godot_cpp/classes/audio_stream.hpp"
+#include <godot_cpp/classes/audio_stream.hpp>
 #include <godot_cpp/classes/audio_stream_playback.hpp>
 
 using namespace godot;
@@ -14,7 +14,7 @@ public:
 	// Should just use the ResourceLoader instead of reinventing the wheel
 	struct ScheduledMidiFile {
 		PackedByteArray buffer;
-		double start_tick;
+		double start_tick = 0;
 	};
 
 	static constexpr int TICKS_PER_BEAT = 960;
@@ -38,7 +38,7 @@ public:
 	virtual String _get_stream_name() const override;
 
 private:
-	String soundfont_path;
+	String soundfont_path = "";
 	double bpm = 120.0;
 	Vector<ScheduledMidiFile> scheduled_midi_files;
 };

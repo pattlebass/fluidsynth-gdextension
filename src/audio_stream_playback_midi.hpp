@@ -1,11 +1,11 @@
 #pragma once
 
-#include "MidiFile.h"
 #include "audio_stream_midi_sequencer.hpp"
-#include "fluidsynth.h"
-#include "godot_cpp/classes/audio_stream.hpp"
-#include "godot_cpp/classes/audio_stream_playback.hpp"
-#include "godot_cpp/variant/string.hpp"
+#include <MidiFile.h>
+#include <fluidsynth.h>
+#include <godot_cpp/classes/audio_stream.hpp>
+#include <godot_cpp/classes/audio_stream_playback.hpp>
+#include <godot_cpp/variant/string.hpp>
 
 class AudioStreamPlaybackMidi : public godot::AudioStreamPlayback {
 	GDCLASS(AudioStreamPlaybackMidi, AudioStreamPlayback);
@@ -17,10 +17,10 @@ private:
 	bool playing = false;
 	unsigned int end_sequencer_time = 0;
 
-	fluid_settings_t *settings;
-	fluid_synth_t *synth;
-	fluid_sequencer_t *sequencer;
-	fluid_seq_id_t synth_id;
+	fluid_settings_t *settings = nullptr;
+	fluid_synth_t *synth = nullptr;
+	fluid_sequencer_t *sequencer = nullptr;
+	fluid_seq_id_t synth_id = -1;
 
 	void schedule_midi_buffer_at_tick(const godot::PackedByteArray &buffer, double start_tick);
 
