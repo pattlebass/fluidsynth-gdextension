@@ -95,6 +95,49 @@ cmake -B build/android-arm64-v8a -G "Ninja" `
 cmake --build build/android-arm64-v8a --target install
 ```
 
+### armeabi-v7a
+
+```powershell
+cmake -B build/android-armeabi-v7a -G "Ninja" `
+  -DCMAKE_INSTALL_PREFIX="./install/android-armeabi-v7a" `
+  -Dosal=cpp11 `
+  -DCMAKE_BUILD_TYPE=Release `
+  -Denable-alsa=OFF `
+  -Denable-aufile=OFF `
+  -DBUILD_SHARED_LIBS=ON `
+  -Denable-dbus=OFF `
+  -Denable-ipv6=OFF `
+  -Denable-jack=OFF `
+  -Denable-ladspa=OFF `
+  -Denable-libinstpatch=OFF `
+  -Denable-libsndfile=OFF `
+  -Denable-midishare=OFF `
+  -Denable-opensles=OFF `
+  -Denable-oboe=OFF `
+  -Denable-network=OFF `
+  -Denable-oss=OFF `
+  -Denable-dsound=OFF `
+  -Denable-wasapi=OFF `
+  -Denable-waveout=OFF `
+  -Denable-winmidi=OFF `
+  -Denable-sdl3=OFF `
+  -Denable-pulseaudio=OFF `
+  -Denable-pipewire=OFF `
+  -Denable-readline=OFF `
+  -Denable-threads=OFF `
+  -Denable-openmp=OFF `
+  -Denable-unicode=OFF `
+  -Denable-native-dls=OFF `
+  -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" `
+  -DANDROID_ABI=armeabi-v7a `
+  -DANDROID_PLATFORM=android-21 `
+  -DANDROID_STL=c++_static
+```
+
+```powershell
+cmake --build build/android-armeabi-v7a --target install
+```
+
 ### x86_64
 
 ```powershell

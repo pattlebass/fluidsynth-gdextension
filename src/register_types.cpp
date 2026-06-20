@@ -7,27 +7,15 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-#ifdef __ANDROID__
-#include <dlfcn.h>
-#endif
-
 using namespace godot;
 
 void initialize_gdextension_types(ModuleInitializationLevel p_level) {
-#ifdef __ANDROID__
-	dlopen("libfluidsynth.so", RTLD_GLOBAL | RTLD_NOW);
-#endif
-	UtilityFunctions::print("init called, level: ", (int)p_level);
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	UtilityFunctions::print("registering classes...");
-	// Register your classes here, so they are available in the Godot editor and engine
-	// GDREGISTER_CLASS(ItemData)
 	GDREGISTER_CLASS(AudioStreamPlaybackMidi)
 	GDREGISTER_CLASS(AudioStreamMidiSequencer)
 	GDREGISTER_CLASS(AudioStreamMidiFile)
-	UtilityFunctions::print("classes registered");
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

@@ -119,7 +119,7 @@ env.Append(CPPPATH=include_dirs)
 ## Fluidsynth
 arch_folder_name = env["arch"]
 if env["platform"] == "android":
-    arch_map = {"x86_64": "x86_64", "arm64": "arm64-v8a"}
+    arch_map = {"x86_64": "x86_64", "arm64": "arm64-v8a", "arm32": "armeabi-v7a"}
     arch_folder_name = arch_map.get(env["arch"], "x86_64")
 
 fluidsynth_dir = f"thirdparty/fluidsynth/install/{env['platform']}-{arch_folder_name}"
