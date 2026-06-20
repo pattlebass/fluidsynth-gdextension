@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="AudioStreamMidiSequencer" inherits="AudioStream" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Lets you play and schedule MIDI files.
+	</brief_description>
+	<description>
+		AudioStreamMidiSequencer lets you play and schedule MIDI data on a beat-based timeline.
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="clear_scheduled_midi_files">
+			<return type="void" />
+			<description>
+				Removes all scheduled MIDI files.
+			</description>
+		</method>
+		<method name="schedule_midi_buffer_at_beat">
+			<return type="void" />
+			<param index="0" name="buffer" type="PackedByteArray" />
+			<param index="1" name="start_beat" type="float" />
+			<description>
+				Plays a MIDI data buffer at a certain beat.
+			</description>
+		</method>
+		<method name="schedule_midi_buffer_at_tick">
+			<return type="void" />
+			<param index="0" name="buffer" type="PackedByteArray" />
+			<param index="1" name="start_tick" type="float" />
+			<description>
+				Plays a MIDI data buffer at a certain timeline tick. See [constant AudioStreamMidiSequencer.TICKS_PER_BEAT].
+			</description>
+		</method>
+		<method name="schedule_midi_file_at_beat">
+			<return type="void" />
+			<param index="0" name="path" type="String" />
+			<param index="1" name="start_beat" type="float" />
+			<description>
+				Plays a MIDI file at a certain beat.
+			</description>
+		</method>
+		<method name="schedule_midi_file_at_tick">
+			<return type="void" />
+			<param index="0" name="path" type="String" />
+			<param index="1" name="start_tick" type="float" />
+			<description>
+				Plays a MIDI file at a certain timeline tick. See [constant AudioStreamMidiSequencer.TICKS_PER_BEAT].
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="bpm" type="float" setter="set_bpm" getter="get_bpm" default="120.0">
+			The tempo of the MIDI timeline, in beats per minute.
+		</member>
+		<member name="soundfont_path" type="String" setter="set_soundfont_path" getter="get_soundfont_path" default="&quot;&quot;">
+			Path to the soundfont used.
+		</member>
+	</members>
+	<constants>
+		<constant name="TICKS_PER_BEAT" value="960">
+		</constant>
+	</constants>
+</class>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="AudioStreamMidiFile" inherits="AudioStreamMidiSequencer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Lets you play a single MIDI file.
+	</brief_description>
+	<description>
+		AudioStreamMidiFile plays a single MIDI file at the start of the timeline. See [AudioStreamMidiSequencer] for more control.
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="path" type="String" setter="set_path" getter="get_path" default="&quot;&quot;">
+			Path to the MIDI file to be played.
+		</member>
+	</members>
+</class>
