@@ -179,6 +179,10 @@ double AudioStreamPlaybackMidi::timeline_ticks_to_ms(double ticks) const {
 	return ticks * 60000.0 / (base->get_bpm() * AudioStreamMidiSequencer::TICKS_PER_BEAT);
 }
 
+bool AudioStreamPlaybackMidi::reached_end() {
+	return fluid_sequencer_get_tick(sequencer) >= end_sequencer_time && fluid_synth_get_active_voice_count(synth) == 0;
+}
+
 void AudioStreamPlaybackMidi::_start(double p_from_pos) {
 	fluidsynthgd::load_soundfont_from_file(synth, base->get_soundfont_path()); // move to constructor
 	for (const AudioStreamMidiSequencer::ScheduledMidiFile &file : base->get_scheduled_midi_files()) {
@@ -222,7 +226,7 @@ int32_t AudioStreamPlaybackMidi::_mix(AudioFrame *buffer, float rate_scale, int3
 							buffer, 0, 2, // left
 							buffer, 1, 2); // right
 
-	if (fluid_sequencer_get_tick(sequencer) >= end_sequencer_time && fluid_synth_get_active_voice_count(synth) == 0) {
+	if (reached_end()) {
 		playing = false;
 	}
 

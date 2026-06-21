@@ -26,6 +26,7 @@ private:
 
 	bool event_midi_to_fluid(const smf::MidiEvent &e, fluid_midi_event_t *out);
 	double timeline_ticks_to_ms(double ticks) const;
+	bool reached_end();
 
 protected:
 	static void _bind_methods();

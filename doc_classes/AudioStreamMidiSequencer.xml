@@ -15,6 +15,14 @@
 				Removes all scheduled MIDI files.
 			</description>
 		</method>
+		<method name="save_to_wav">
+			<return type="int" enum="Error" />
+			<param index="0" name="path" type="String" />
+			<description>
+				Renders the MIDI events as a WAV file to [param path].
+				[b]Note:[/b] A [code].wav[/code] extension is automatically appended to [param path] if it is missing.
+			</description>
+		</method>
 		<method name="schedule_midi_buffer_at_beat">
 			<return type="void" />
 			<param index="0" name="buffer" type="PackedByteArray" />

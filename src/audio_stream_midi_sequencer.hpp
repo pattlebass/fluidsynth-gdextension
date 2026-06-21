@@ -31,8 +31,9 @@ public:
 	void schedule_midi_buffer_at_tick(const PackedByteArray &buffer, double start_tick);
 
 	const Vector<ScheduledMidiFile> &get_scheduled_midi_files() const;
-
 	void clear_scheduled_midi_files();
+
+	Error save_to_wav(const String &p_path);
 
 	virtual Ref<AudioStreamPlayback> _instantiate_playback() const override;
 	virtual String _get_stream_name() const override;
@@ -41,4 +42,6 @@ private:
 	String soundfont_path = "";
 	double bpm = 120.0;
 	Vector<ScheduledMidiFile> scheduled_midi_files;
+
+	PackedByteArray render_audio();
 };
