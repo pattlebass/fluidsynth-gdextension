@@ -28,6 +28,7 @@ def find_sources(dirs, exts):
 # Configuration
 libname = "fluidsynthgd"
 projectdir = "test_project"
+addon_dir = f"{projectdir}/addons/{libname}"
 
 # Set up the environment
 env = Environment(tools=["default"], PLATFORM="")
@@ -122,14 +123,21 @@ if env["platform"] == "android":
     arch_map = {"x86_64": "x86_64", "arm64": "arm64-v8a", "arm32": "armeabi-v7a"}
     arch_folder_name = arch_map.get(env["arch"], "x86_64")
 
-fluidsynth_dir = f"thirdparty/fluidsynth/install/{env['platform']}-{arch_folder_name}"
-env.Append(CPPPATH=[os.path.join(fluidsynth_dir, "include")])
-env.Append(LIBPATH=[os.path.join(fluidsynth_dir, "lib")])
+fluidsynth_dir = "thirdparty/fluidsynth"
+fluidsynth_install_dir = (
+    f"thirdparty/fluidsynth/install/{env['platform']}-{arch_folder_name}"
+)
+env.Append(CPPPATH=[os.path.join(fluidsynth_install_dir, "include")])
+env.Append(LIBPATH=[os.path.join(fluidsynth_install_dir, "lib")])
 
 if env["platform"] == "windows":
     if env.get("use_mingw"):
         env.Append(
-            LIBS=[File(os.path.join(fluidsynth_dir, "lib", "libfluidsynth-3.dll.a"))]
+            LIBS=[
+                File(
+                    os.path.join(fluidsynth_install_dir, "lib", "libfluidsynth-3.dll.a")
+                )
+            ]
         )
     else:  # MSVC
         env.Append(LIBS=["libfluidsynth-3"])
@@ -137,6 +145,7 @@ elif env["platform"] == "android":
     env.Append(LIBS=["fluidsynth"])
 
 ## midifile
+midifile_dir = "thirdparty/midifile"
 env.Append(CPPPATH=["thirdparty/midifile/include"])
 source_dirs.append("thirdparty/midifile/src")
 
@@ -330,15 +339,36 @@ else:
     install_source = library
 
 # Install the library to test_project
-install_dir = f"{projectdir}/{libname}/bin/{env['platform']}/{env['arch']}/"
+install_dir = f"{addon_dir}/bin/{env['platform']}/{env['arch']}/"
 copy = env.Install(install_dir, source=install_source)
 
 # Copy runtime dependencies
 dep_files = []
-dep_files += Glob(os.path.join(fluidsynth_dir, "lib", "*.so"))
-dep_files += Glob(os.path.join(fluidsynth_dir, "bin", "*.dll"))
+dep_files += Glob(os.path.join(fluidsynth_install_dir, "lib", "*.so"))
+dep_files += Glob(os.path.join(fluidsynth_install_dir, "bin", "*.dll"))
 deps = env.Install(install_dir, dep_files)
 
+# Copy Licenses
+licenses = []
+licenses.append(
+    env.InstallAs(
+        f"{addon_dir}/licenses/fluidsynth-gdextension.txt",
+        os.path.join("LICENSE"),
+    )
+)
+licenses.append(
+    env.InstallAs(
+        f"{addon_dir}/licenses/fluidsynth.txt",
+        os.path.join(fluidsynth_dir, "LICENSE"),
+    )
+)
+licenses.append(
+    env.InstallAs(
+        f"{addon_dir}/licenses/midifile.txt",
+        os.path.join(midifile_dir, "LICENSE.txt"),
+    )
+)
+
 # Set default targets
-default_args = [library, copy, deps]
+default_args = [library, copy, deps, licenses]
 Default(*default_args)
