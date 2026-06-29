@@ -4,6 +4,8 @@ In `thirdparty/fluidsynth/`, run:
 
 ## Windows
 
+(Includes flags to statically link `libwinpthread` in MinGW Posix).
+
 ```powershell
 cmake -B build/windows-x86_64 -G "MinGW Makefiles" `
   -DCMAKE_INSTALL_PREFIX="./install/windows-x86_64" `
@@ -35,7 +37,7 @@ cmake -B build/windows-x86_64 -G "MinGW Makefiles" `
   -Denable-openmp=OFF `
   -Denable-unicode=OFF `
   -Denable-native-dls=OFF `
-  -DCMAKE_SHARED_LINKER_FLAGS="-static-libgcc -static-libstdc++"
+  -DCMAKE_SHARED_LINKER_FLAGS="-static-libgcc -static-libstdc++ -Wl,--whole-archive,C:/msys64/mingw64/lib/libwinpthread.a,--no-whole-archive"
 ```
 
 ```powershell
