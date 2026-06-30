@@ -7,7 +7,7 @@ In `thirdparty/fluidsynth/`, run:
 (Includes flags to statically link `libwinpthread` in MinGW Posix).
 
 ```powershell
-cmake -B build/windows-x86_64 -G "MinGW Makefiles" `
+cmake -B build/windows-x86_64 -G "Ninja" `
   -DCMAKE_INSTALL_PREFIX="./install/windows-x86_64" `
   -Dosal=cpp11 `
   -DCMAKE_BUILD_TYPE=Release `
@@ -42,6 +42,46 @@ cmake -B build/windows-x86_64 -G "MinGW Makefiles" `
 
 ```powershell
 cmake --build build/windows-x86_64 --target install
+```
+
+## Linux
+
+```bash
+sudo cmake -B build/linux-x86_64 -G "Ninja" \
+  -DCMAKE_INSTALL_PREFIX="./install/linux-x86_64" \
+  -Dosal=cpp11 \
+  -DCMAKE_BUILD_TYPE=Release \
+  -Denable-alsa=OFF \
+  -Denable-aufile=OFF \
+  -DBUILD_SHARED_LIBS=ON \
+  -Denable-dbus=OFF \
+  -Denable-ipv6=OFF \
+  -Denable-jack=OFF \
+  -Denable-ladspa=OFF \
+  -Denable-libinstpatch=OFF \
+  -Denable-libsndfile=OFF \
+  -Denable-midishare=OFF \
+  -Denable-opensles=OFF \
+  -Denable-oboe=OFF \
+  -Denable-network=OFF \
+  -Denable-oss=OFF \
+  -Denable-dsound=OFF \
+  -Denable-wasapi=OFF \
+  -Denable-waveout=OFF \
+  -Denable-winmidi=OFF \
+  -Denable-sdl3=OFF \
+  -Denable-pulseaudio=OFF \
+  -Denable-pipewire=OFF \
+  -Denable-readline=OFF \
+  -Denable-threads=OFF \
+  -Denable-openmp=OFF \
+  -Denable-unicode=OFF \
+  -Denable-native-dls=OFF \
+  -DCMAKE_SHARED_LINKER_FLAGS="-static-libgcc -static-libstdc++"
+```
+
+```bash
+sudo cmake --build build/linux-x86_64 --target install
 ```
 
 ## Android
