@@ -336,7 +336,7 @@ elif env["platform"] == "android":
 else:
     # For other platforms, build a single shared library
     library = env.SharedLibrary(f"bin/{env['platform']}/{lib_filename}", source=sources)
-    install_source = library
+    install_source = [t for t in library if str(t).lower().endswith(".dll")]
 
 # Install the library to test_project
 install_dir = f"{addon_dir}/bin/{env['platform']}/{env['arch']}/"
